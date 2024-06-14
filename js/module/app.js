@@ -23,3 +23,4 @@ export const getAllCategory = async()=>{
     let data = res.json();
     return data;
 }
+
