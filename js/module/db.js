@@ -1,1 +1,0 @@
-let openRequest = indexedDB.open("storage")
