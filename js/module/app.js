@@ -24,14 +24,13 @@ export const getAllCategory = async()=>{
     let data = res.json();
     return data;
 }
-
 export const getAllProductRandom = async({
-    query="zapato", 
+    query="relojes", 
     page=3000, 
     category_id="fashion",
     min_price=100, 
     max_price=150,
-    brand=["adidas", "nike", "puma"]})=>{
+    brand=["nine", "invicta", "casio"]})=>{
     console.log("Esperando .......");
     page = Math.random()*(page/20);
     page = parseInt(Math.round(page));

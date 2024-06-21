@@ -26,7 +26,7 @@ let searchProducts = async e => {
     }
     console.log(res);
     main__article.innerHTML = galleryIndex(res, params.get('id'));
-    
+
     let {data: {products}} = res;
     let asin = products.map(value => {return {id: value.asin}});
 
@@ -41,18 +41,13 @@ let searchProducts = async e => {
     Promise.all([proceso]).then(res => {console.log(res);})
 
 }
-
-
 addEventListener("DOMContentLoaded", async e=>{
     if(!localStorage.getItem("getAllCategory")) localStorage.setItem("getAllCategory", JSON.stringify(await getAllCategory()));
     nav__ul.innerHTML = await menuListCategoryIndex(JSON.parse(localStorage.getItem("getAllCategory")));  
-    
     history.pushState(null, "", "?id=fashion");
     input__search.value = "zapato"
     const eventoChange = new Event('change');
     input__search.dispatchEvent(eventoChange);
-    
-   
 })
 
 input__search.addEventListener("change", searchProducts);
