@@ -1,14 +1,47 @@
-export const getAllProductName = async({search:text} = {search:"pantalon"}) => { 
-const url = 'https://real-time-amazon-data.p.rapidapi.com/search?query=${text}&page=1&country=US&sort_by=RELEVANCE&product_condition=ALL';
-const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '73d7cd7cd4msh91c4005ccdd7aaap1d1c82jsnc1d9a63c2234',
-		'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
-	}
-};
-let res = await fetch(url, options)
-let data = res.json();
-return data;
+import { headers } from "../components/env.js";
+
+export const getAllProductName = async({search:text, id:idCategory})=>{
+    console.log("Esperando .......");
+    console.log(text, idCategory);
+    const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${text}&page=1&country=US&sort_by=RELEVANCE&category_id=${idCategory}&product_condition=ALL`;
+    const options = {
+        method: 'GET',
+        headers
+    };
+    let res = await fetch(url, options);
+    let data = res.json();
+    return data;
 }
 
+export const getAllCategory = async()=>{
+    console.log("Esperando .......");
+    const url = `https://real-time-amazon-data.p.rapidapi.com/product-category-list?country=US`;
+    const options = {
+        method: 'GET',
+        headers
+    };
+    let res = await fetch(url, options);
+    let data = res.json();
+    return data;
+}
+
+export const getAllProductRandom = async({
+    query="zapato", 
+    page=3000, 
+    category_id="fashion",
+    min_price=100, 
+    max_price=150,
+    brand=["adidas", "nike", "puma"]})=>{
+    console.log("Esperando .......");
+    page = Math.random()*(page/20);
+    page = parseInt(Math.round(page));
+    if(!page) page = 1;
+    const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${query}&page=${page}&country=US&sort_by=RELEVANCE&category_id=${category_id}&min_price=${min_price}&max_price=${max_price}&product_condition=NEW&brand=${brand.join("%2C")}`;
+    const options = {
+        method: 'GET',
+        headers
+    };
+    let res = await fetch(url, options);
+    let data = res.json();
+    return data;
+}
