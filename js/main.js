@@ -2,8 +2,6 @@ import { menuListCategoryIndex } from "./components/menu.js";
 import { galleryIndex } from "./components/gallery.js";
 import { getAllProductName, getAllCategory, getAllProductRandom } from "./module/app.js";
 import { getProductId } from "./module/detail.js";
-
-
 let input__search = document.querySelector("#input__search");
 let main__article = document.querySelector(".main__article");
 let nav__ul = document.querySelector(".nav__ul");
